@@ -18,8 +18,8 @@ public class MouseView : MonoBehaviour
     
     void Update()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
