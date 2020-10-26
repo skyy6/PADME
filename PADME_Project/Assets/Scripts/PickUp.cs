@@ -10,6 +10,7 @@ public class PickUp : MonoBehaviour
     Rigidbody rigidBody;
     Vector3 startScale;
     bool isCarrying = false;
+    float power = 250f;
    
 
     private void Start()
@@ -26,13 +27,27 @@ public class PickUp : MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, transform.position);
         //Debug.Log("Looking at " + transform.name + "Distance: " + distance);
-        if(Input.GetKey(KeyCode.E) && distance < 3f)
+        if(Input.GetKeyDown(KeyCode.E) && distance < 3f)
         {
             transform.parent = playerCamera;
             rigidBody.isKinematic = true;
             isCarrying = true;
             
 
+        }
+        if(isCarrying)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GetComponent<Rigidbody>().isKinematic = false;
+                transform.parent = null;
+                isCarrying = false;
+                rigidBody.AddForce(playerCamera.forward * power);
+                Debug.Log("Throw");
+                
+            }
+            
+            
         }
 
 
