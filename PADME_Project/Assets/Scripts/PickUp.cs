@@ -7,10 +7,13 @@ public class PickUp : MonoBehaviour
     
     Transform player;
     Transform playerCamera;
+    float startingTime;
+    float endTime;
     Rigidbody rigidBody;
     Vector3 startScale;
     bool isCarrying = false;
-    float power = 250f;
+    float power = 450f;
+    float startingPower = 250f;
    
 
     private void Start()
@@ -39,18 +42,34 @@ public class PickUp : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                //StartCoroutine(ThrowCounter());
+                startingTime = Time.time;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                endTime = Time.time - startingTime;
                 GetComponent<Rigidbody>().isKinematic = false;
                 transform.parent = null;
                 isCarrying = false;
-                rigidBody.AddForce(playerCamera.forward * power);
-                Debug.Log("Throw");
-                
+             
+                    rigidBody.AddForce(playerCamera.forward * ThrowForceCalc(endTime));
+                    Debug.Log("Throw" + endTime + startingTime);
+   
+
             }
-            
-            
+
+
+
         }
 
 
+    }
+    private float ThrowForceCalc(float pushtime)
+    {
+        float maxTime = 2f;
+        float calcTime = Mathf.Clamp01(pushtime / maxTime);
+        float force = startingPower + calcTime * power;
+        return force;
     }
 
     void Update()
