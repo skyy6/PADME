@@ -14,6 +14,8 @@ public class PickUp : MonoBehaviour
     bool isCarrying = false;
     float power = 450f;
     float startingPower = 250f;
+    bool collided = false;
+    Vector3 nullForce = new Vector3(0, 0, 0); 
    
 
     private void Start()
@@ -22,24 +24,37 @@ public class PickUp : MonoBehaviour
         playerCamera = GameObject.Find("Main Camera").transform;
         rigidBody = GetComponent<Rigidbody>();
         startScale = transform.localScale;
-       
+        
+
 
     }
+    void OnCollisionEnter()
+    {
+        if (isCarrying)
+        {
+            collided = true;
+            Debug.Log("Collision");
+        }
+        Debug.Log("Collision");
+    }
 
-    private void OnMouseOver()
+private void OnMouseOver()
     {
         float distance = Vector3.Distance(player.position, transform.position);
         //Debug.Log("Looking at " + transform.name + "Distance: " + distance);
         if(Input.GetKeyDown(KeyCode.E) && distance < 3f)
         {
             transform.parent = playerCamera;
+            //GetComponent<Rigidbody>().useGravity = false;
             rigidBody.isKinematic = true;
+            
             isCarrying = true;
             
 
         }
         if(isCarrying)
         {
+
             if (Input.GetMouseButtonDown(0))
             {
                 //StartCoroutine(ThrowCounter());
@@ -49,20 +64,15 @@ public class PickUp : MonoBehaviour
             {
                 endTime = Time.time - startingTime;
                 GetComponent<Rigidbody>().isKinematic = false;
+                //GetComponent<Rigidbody>().useGravity = true;
                 transform.parent = null;
                 isCarrying = false;
              
                     rigidBody.AddForce(playerCamera.forward * ThrowForceCalc(endTime));
                     Debug.Log("Throw" + endTime + startingTime);
    
-
             }
-
-
-
         }
-
-
     }
     private float ThrowForceCalc(float pushtime)
     {
@@ -74,11 +84,21 @@ public class PickUp : MonoBehaviour
 
     void Update()
     {
+        
         if (isCarrying) {
+            if (collided)
+            {
+                GetComponent<Rigidbody>().isKinematic = false;
+                //GetComponent<Rigidbody>().useGravity = true;
+                transform.parent = null;
+                isCarrying = false;
+                collided = false;
+            }
             if (Input.GetKeyUp(KeyCode.E))
             {
                 transform.parent = null;
                 GetComponent<Rigidbody>().isKinematic = false;
+               //GetComponent<Rigidbody>().useGravity = true;
                 transform.localScale = startScale;
                 isCarrying = false;
             }
