@@ -47,6 +47,7 @@ private void OnMouseOver()
             transform.parent = playerCamera;
             //GetComponent<Rigidbody>().useGravity = false;
             rigidBody.isKinematic = true;
+            rigidBody.detectCollisions = true;
             
             isCarrying = true;
             
@@ -86,14 +87,14 @@ private void OnMouseOver()
     {
         
         if (isCarrying) {
-            if (collided)
+            /*if (collided)  //gamla if satsen för att kolla om man nuddade något
             {
                 GetComponent<Rigidbody>().isKinematic = false;
                 //GetComponent<Rigidbody>().useGravity = true;
                 transform.parent = null;
                 isCarrying = false;
                 collided = false;
-            }
+            }*/
             if (Input.GetKeyUp(KeyCode.E))
             {
                 transform.parent = null;
