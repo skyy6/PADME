@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public Transform groundCheck;
     public Transform headCheck;
+    //Transform objTransform;
     float groundDistance = 0.2f;
     public float movementSpeed;
     public float walkingSpeed = 5f;
@@ -18,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public float jumpHeight = 2.5f;
     public float fieldOfView = 60f;
+    float originalOffset;
     float timer = 2f;
     public int sprintTime = 800;
     float crouchingSpeed = 3f;
+    float heightReduce = 1.94f;
+    float newHeight;
     Vector3 velocity;
     bool moving;
     bool isGrounded;
@@ -57,10 +61,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void Standing()
     {
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            playerController.transform.position = new Vector3(playerController.transform.position.x, playerController.transform.position.y + 0.74f, playerController.transform.position.z);
+        }
+
+        playerController.enabled = false;
+        playerController.enabled = true;
         playerController.height = originalHeight;
         isCrouching = false;
         isWalking = true;
-      
+
     }
 
     void startRunning()
@@ -89,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    void Crouch()
+    void startCrouch()
     {
         isObstructed = Physics.CheckSphere(headCheck.position, groundDistance, groundMask);
         if (Input.GetKey(KeyCode.LeftControl))
@@ -127,7 +138,8 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.fieldOfView = fieldOfView;
         staminaBar.SetMaxStamina(maxStamina);
         originalHeight = playerController.height;
-
+        originalOffset = playerController.stepOffset;
+        
 
     }
     void Update()
@@ -136,7 +148,8 @@ public class PlayerMovement : MonoBehaviour
         staminaBar.SetStamina(sprintTime);
         Jumping();
         Run();
-        Crouch();
+        startCrouch();
+        
 
         //Debug.Log(movementSpeed);
 
@@ -152,9 +165,18 @@ public class PlayerMovement : MonoBehaviour
         {
             movementSpeed = runningSpeed;
         }
+        if (!isGrounded)
+        {
+            playerController.stepOffset = 0f;
+
+        }
+        else
+        {
+            playerController.stepOffset = originalOffset;
+        }
 
 
-       //myText = GameObject.Find("Text").GetComponent<Text>();
+        //myText = GameObject.Find("Text").GetComponent<Text>();
         //myText.text = "Units: " + sprintTime;
         float z = Input.GetAxis("Vertical");
         float x = Input.GetAxis("Horizontal");
