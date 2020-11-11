@@ -7,25 +7,31 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController playerController;
     
-    public float gravity = -9.81f;
+ 
+    [Header("Transforms")]
     public Transform groundCheck;
     public Transform headCheck;
-    //Transform objTransform;
+    public Transform player;
+    public Camera mainCam;
+
+    [Header("Camera")]
+    public float fieldOfView = 60f;
+
+    [Header("Jumping")]
+    public LayerMask groundMask;
+    public float jumpHeight = 2.5f;
     float groundDistance = 0.2f;
+    public float gravity = -9.81f;
+    float originalOffset;
+    Vector3 velocity;
+
+    [Header("Movement")]
     public float movementSpeed;
     public float walkingSpeed = 5f;
     public float runningSpeed = 8f;
-    float originalHeight;
-    public LayerMask groundMask;
-    public float jumpHeight = 2.5f;
-    public float fieldOfView = 60f;
-    float originalOffset;
+    float crouchingSpeed = 3f;
     float timer = 2f;
     public int sprintTime = 800;
-    float crouchingSpeed = 3f;
-    float heightReduce = 1.94f;
-    float newHeight;
-    Vector3 velocity;
     bool moving;
     bool isGrounded;
     bool isRunning = false;
@@ -34,6 +40,25 @@ public class PlayerMovement : MonoBehaviour
     bool isWalking;
     public StaminaBar staminaBar;
     int maxStamina = 800;
+
+    [Header("Crouching")]
+    public float standingHeight = 2.94f;
+    public float standingOffset = 1f;
+    public float standingModelHeight = 1;
+    public float crouchingModelHeight = 0.5f;
+    public float crouchingHeight = 2;
+    public float crouchingOffset = 0.5f;
+    public float crouchSpeed = 0.3f;
+    float heightVel;
+    float offsetVel;
+    float modelVel;
+    float cameraVel;
+    float targetOffset;
+    float targetHeight;
+    float targetModelHeight;
+    float targetCameraHeight;
+    public float standingCameraHeight = 1.75f;
+    public float crouchingCameraHeight = 0.75f;
 
     void Jumping()
     {
@@ -51,28 +76,6 @@ public class PlayerMovement : MonoBehaviour
         playerController.Move(velocity * Time.deltaTime);
     }
 
-    void Crouching()
-    {
-        playerController.height = 1f;
-        isWalking = false;
-        isRunning = false;
-        isCrouching = true;
-        
-    }
-    void Standing()
-    {
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            playerController.transform.position = new Vector3(playerController.transform.position.x, playerController.transform.position.y + 0.74f, playerController.transform.position.z);
-        }
-
-        playerController.enabled = false;
-        playerController.enabled = true;
-        playerController.height = originalHeight;
-        isCrouching = false;
-        isWalking = true;
-
-    }
 
     void startRunning()
     {
@@ -100,17 +103,42 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    void startCrouch()
+    void StandingState()
     {
         isObstructed = Physics.CheckSphere(headCheck.position, groundDistance, groundMask);
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            Crouching();
+            targetHeight = crouchingHeight;
+            targetOffset = crouchingOffset;
+            targetModelHeight = crouchingModelHeight;
+            targetCameraHeight = crouchingCameraHeight;
+            //isWalking = false;
+            //isRunning = false;
+            isCrouching = true;
+
         }
-        else if (!Input.GetKeyDown(KeyCode.LeftControl) && !isObstructed)
+        if(Input.GetKeyUp(KeyCode.LeftControl) && isObstructed)
         {
-            Standing();
+            isCrouching = true;
         }
+
+        if (!isObstructed)
+        {
+            playerController.height = Mathf.SmoothDamp(playerController.height, targetHeight, ref heightVel, crouchSpeed);
+            var center = playerController.center;
+            center.y = Mathf.SmoothDamp(center.y, targetOffset, ref offsetVel, crouchSpeed);
+            playerController.center = center;
+
+            var size = player.localScale;
+            size.y = Mathf.SmoothDamp(size.y, targetModelHeight, ref modelVel, crouchSpeed);
+            player.localScale = size;
+
+            var camPos = mainCam.transform.localPosition;
+            camPos.y = Mathf.SmoothDamp(camPos.y, targetCameraHeight, ref cameraVel, crouchSpeed);
+            mainCam.transform.localPosition = camPos;
+       
+        }
+
     }
     void Run()
     {
@@ -137,19 +165,29 @@ public class PlayerMovement : MonoBehaviour
     {
         Camera.main.fieldOfView = fieldOfView;
         staminaBar.SetMaxStamina(maxStamina);
-        originalHeight = playerController.height;
         originalOffset = playerController.stepOffset;
+
         
 
     }
     void Update()
     {
+        if(!Input.GetKeyDown(KeyCode.LeftControl) && !isObstructed){
+            isCrouching = false;
+        }
 
         staminaBar.SetStamina(sprintTime);
         Jumping();
         Run();
-        startCrouch();
-        
+
+        targetHeight = standingHeight;
+        targetOffset = standingOffset;
+        targetModelHeight = standingModelHeight;
+        targetCameraHeight = standingCameraHeight;
+
+        StandingState();
+
+
 
         //Debug.Log(movementSpeed);
 
@@ -174,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerController.stepOffset = originalOffset;
         }
+        Debug.Log(isCrouching);
 
 
         //myText = GameObject.Find("Text").GetComponent<Text>();
@@ -194,4 +233,6 @@ public class PlayerMovement : MonoBehaviour
         playerController.Move(move * movementSpeed * Time.deltaTime);
   
     }
+
 }
+
