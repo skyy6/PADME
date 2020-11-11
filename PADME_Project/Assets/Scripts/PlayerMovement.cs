@@ -212,8 +212,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerController.stepOffset = originalOffset;
         }
-        Debug.Log(isCrouching);
-
 
         //myText = GameObject.Find("Text").GetComponent<Text>();
         //myText.text = "Units: " + sprintTime;
