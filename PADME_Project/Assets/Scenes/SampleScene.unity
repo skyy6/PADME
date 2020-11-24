@@ -8494,6 +8494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf2168a029a3224d8b78b5405937f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraWidthThreshold: {x: 0, y: 0, z: 0}
+  cameraHeightThreshold: {x: 0, y: 0, z: 0}
 --- !u!1 &693530031
 GameObject:
   m_ObjectHideFlags: 0
@@ -9858,6 +9860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf2168a029a3224d8b78b5405937f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraWidthThreshold: {x: 0, y: 0, z: 0}
+  cameraHeightThreshold: {x: 0, y: 0, z: 0}
 --- !u!65 &905222765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14339,6 +14343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf2168a029a3224d8b78b5405937f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraWidthThreshold: {x: 0, y: 0, z: 0}
+  cameraHeightThreshold: {x: 0, y: 0, z: 0}
 --- !u!65 &1680353507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15957,6 +15963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf2168a029a3224d8b78b5405937f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraWidthThreshold: {x: 0, y: 0, z: 0}
+  cameraHeightThreshold: {x: 0, y: 0, z: 0}
 --- !u!65 &1970538011
 BoxCollider:
   m_ObjectHideFlags: 0

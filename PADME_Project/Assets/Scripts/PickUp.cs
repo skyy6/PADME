@@ -15,6 +15,10 @@ public class PickUp : MonoBehaviour
     float power = 450f;
     float startingPower = 250f;
     bool collided = false;
+    bool looking = false;
+    //public Camera cam;
+    //public Vector3 cameraWidthThreshold;
+    //public Vector3 cameraHeightThreshold;
     Vector3 nullForce = new Vector3(0, 0, 0); 
    
 
@@ -24,6 +28,7 @@ public class PickUp : MonoBehaviour
         playerCamera = GameObject.Find("Main Camera").transform;
         rigidBody = GetComponent<Rigidbody>();
         startScale = transform.localScale;
+        //cam = GameObject.Find
         
 
 
@@ -35,46 +40,28 @@ public class PickUp : MonoBehaviour
             collided = true;
             Debug.Log("Collision");
         }
-        Debug.Log("Collision");
+    
     }
 
 private void OnMouseOver()
     {
+        looking = true;
         float distance = Vector3.Distance(player.position, transform.position);
         //Debug.Log("Looking at " + transform.name + "Distance: " + distance);
         if(Input.GetKeyDown(KeyCode.E) && distance < 3f)
         {
             transform.parent = playerCamera;
-            //GetComponent<Rigidbody>().useGravity = false;
-            rigidBody.isKinematic = true;
+            GetComponent<Rigidbody>().useGravity = false;
+            //rigidBody.isKinematic = true;
             rigidBody.detectCollisions = true;
             
             isCarrying = true;
             
 
         }
-        if(isCarrying)
-        {
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                //StartCoroutine(ThrowCounter());
-                startingTime = Time.time;
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                endTime = Time.time - startingTime;
-                GetComponent<Rigidbody>().isKinematic = false;
-                //GetComponent<Rigidbody>().useGravity = true;
-                transform.parent = null;
-                isCarrying = false;
-             
-                    rigidBody.AddForce(playerCamera.forward * ThrowForceCalc(endTime));
-                    Debug.Log("Throw" + endTime + startingTime);
-   
-            }
-        }
     }
+ 
     private float ThrowForceCalc(float pushtime)
     {
         float maxTime = 2f;
@@ -85,8 +72,37 @@ private void OnMouseOver()
 
     void Update()
     {
-        
+
+
         if (isCarrying) {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+            if(screenPos.x > 400 || screenPos.x < 170)
+            {
+                transform.parent = null;
+                //GetComponent<Rigidbody>().isKinematic = false;
+                GetComponent<Rigidbody>().useGravity = true;
+                transform.localScale = startScale;
+                isCarrying = false;
+            }
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
+            if (Input.GetMouseButtonDown(0))
+            {
+                //StartCoroutine(ThrowCounter());
+                startingTime = Time.time;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                endTime = Time.time - startingTime;
+                //GetComponent<Rigidbody>().isKinematic = false;
+                GetComponent<Rigidbody>().useGravity = true;
+                transform.parent = null;
+                isCarrying = false;
+
+                rigidBody.AddForce(playerCamera.forward * ThrowForceCalc(endTime));
+                Debug.Log("Throw" + endTime + startingTime);
+
+            }
             /*if (collided)  //gamla if satsen för att kolla om man nuddade något
             {
                 GetComponent<Rigidbody>().isKinematic = false;
@@ -98,8 +114,8 @@ private void OnMouseOver()
             if (Input.GetKeyUp(KeyCode.E))
             {
                 transform.parent = null;
-                GetComponent<Rigidbody>().isKinematic = false;
-               //GetComponent<Rigidbody>().useGravity = true;
+               //GetComponent<Rigidbody>().isKinematic = false;
+               GetComponent<Rigidbody>().useGravity = true;
                 transform.localScale = startScale;
                 isCarrying = false;
             }
