@@ -14329,7 +14329,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.9938512, b: 0.9198113, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -14386,13 +14386,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.42022145, y: -0.15478157, z: 0.15323319, w: 0.88089514}
+  m_LocalRotation: {x: 0.5714171, y: -0.12478476, z: 0.1785119, w: 0.79122996}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 51.978, y: -13.511, z: 13.126}
+  m_LocalEulerAnglesHint: {x: 71.585, y: 1.187, z: 26.283}
 --- !u!1001 &708430843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16195,7 +16195,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6784100636228862799, guid: 9aebcd8b549864c4e8dd446e40789623, type: 3}
 --- !u!1001 &900124859
@@ -16355,8 +16355,8 @@ GameObject:
   - component: {fileID: 905222767}
   - component: {fileID: 905222766}
   - component: {fileID: 905222765}
-  - component: {fileID: 905222764}
   - component: {fileID: 905222769}
+  - component: {fileID: 905222764}
   m_Layer: 8
   m_Name: PickUpItem
   m_TagString: Untagged
@@ -26523,7 +26523,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1149973307703454695, guid: 9aebcd8b549864c4e8dd446e40789623, type: 3}
 --- !u!4 &1342662465 stripped
@@ -35327,7 +35327,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6526757035166810062, guid: 9aebcd8b549864c4e8dd446e40789623, type: 3}
 --- !u!1001 &2121541674
