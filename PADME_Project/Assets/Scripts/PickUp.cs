@@ -78,14 +78,14 @@ private void OnMouseOver()
 
         if (isCarrying) {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-            if(screenPos.x > 400 || screenPos.x < 170)
+            /*if(screenPos.x > 400 || screenPos.x < 170)
             {
                 transform.parent = null;
                 //GetComponent<Rigidbody>().isKinematic = false;
                 GetComponent<Rigidbody>().useGravity = true;
                 transform.localScale = startScale;
                 isCarrying = false;
-            }
+            }*/
             rigidBody.velocity = Vector3.zero;
             rigidBody.angularVelocity = Vector3.zero;
             if (Input.GetMouseButtonDown(0))
@@ -118,7 +118,7 @@ private void OnMouseOver()
                 transform.parent = null;
                //GetComponent<Rigidbody>().isKinematic = false;
                GetComponent<Rigidbody>().useGravity = true;
-                transform.localScale = startScale;
+                //transform.localScale = startScale;
                 isCarrying = false;
             }
         }
