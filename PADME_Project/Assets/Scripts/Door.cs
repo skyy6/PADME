@@ -19,15 +19,18 @@ public class Door : MonoBehaviour
     void Start()
     {
         closedPosition = transform.position;
+        triggered = true;
+        Debug.Log(transform.localPosition.x);
     }
 
     private void Update()
     {
         if(triggered)
         {
-            if (transform.position.z > openPosition.z)
+            if (transform.localPosition.x > openPosition.x)
             {
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
+                Debug.Log(transform.localPosition.x);
             }
         }                   
     }
