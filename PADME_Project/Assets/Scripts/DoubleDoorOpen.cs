@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoubleDoorOpen : MonoBehaviour
 {
-    public GameObject keyPad;
     public GameObject doorLeft;
     public GameObject doorRight;
     public BoxCollider entryCollider;
@@ -12,6 +11,7 @@ public class DoubleDoorOpen : MonoBehaviour
     public float speed;
     private bool open;
     private bool closed;
+    private bool active;
 
     public Vector3 openPosLeft;
     private Vector3 closedPosLeft;
@@ -30,15 +30,13 @@ public class DoubleDoorOpen : MonoBehaviour
         }
         open = false;
         closed = false;
-        Debug.Log(closedPosLeft.x);
+        active = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Controller")
-            //&& keyPad.getActive == true
+        if (other.gameObject.name == "Controller" && active)
         {
-            //Debug.Log("Open, " + other);
             open = true;
             closed = false;
         }
@@ -50,8 +48,6 @@ public class DoubleDoorOpen : MonoBehaviour
         {
             closed = true;
             open = false;
-            //Debug.Log("Closed: " + closed);
-            //Debug.Log("Open: " + open);
         }
     }
 
@@ -81,5 +77,10 @@ public class DoubleDoorOpen : MonoBehaviour
                 doorRight.transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
         }
+    }
+
+    private void ToggleActive(bool b)
+    {
+        active = b;
     }
 }
