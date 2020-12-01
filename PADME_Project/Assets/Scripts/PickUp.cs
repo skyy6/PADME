@@ -46,7 +46,6 @@ public class PickUp : MonoBehaviour
 private void OnMouseOver()
     {
         looking = true;
-        Debug.Log("KOLLAR");
         float distance = Vector3.Distance(player.position, transform.position);
         //Debug.Log("Looking at " + transform.name + "Distance: " + distance);
         if(Input.GetKeyDown(KeyCode.E) && distance < 3f)
