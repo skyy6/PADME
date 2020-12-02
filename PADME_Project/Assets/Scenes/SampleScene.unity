@@ -14474,6 +14474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SurveillanceScreens
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b6fb7092b707724a870854f0b094689,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2142231632989782678, guid: 6b6fb7092b707724a870854f0b094689,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -18813,6 +18818,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera (Mid platform)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4576990533645559701, guid: d420b2c4367d773419ab731f0f75dc7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5745420939006287310, guid: d420b2c4367d773419ab731f0f75dc7c,
         type: 3}
