@@ -67984,7 +67984,7 @@ PrefabInstance:
     - target: {fileID: 1653660082284827577, guid: bd83e9414f3ac6642a4aa6e3c14e65a5,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -6.9334016
+      value: -1.509162
       objectReference: {fileID: 0}
     - target: {fileID: 1690093820453357450, guid: bd83e9414f3ac6642a4aa6e3c14e65a5,
         type: 3}
