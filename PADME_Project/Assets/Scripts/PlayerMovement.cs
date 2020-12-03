@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public float runningSpeed = 8f;
     float crouchingSpeed = 3f;
     float timer = 2f;
-    public int sprintTime = 800;
+    public float sprintTime = 800;
     bool moving;
     bool isGrounded;
     bool isRunning = false;
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {
       
         float MaxFOV = fieldOfView + 10.0f;  //fov för mer realistisk sprint
-        sprintTime--;
+        sprintTime-=200f * Time.deltaTime;
         isRunning = true;
         timer = 2f;
 
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (!moving | !Input.GetKey(KeyCode.LeftShift) && timer < 0)
                 {
-                    sprintTime++;
+                    sprintTime+=200 * Time.deltaTime;
 
                 }
             }
