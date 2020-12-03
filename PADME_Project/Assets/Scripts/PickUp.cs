@@ -54,7 +54,6 @@ private void OnMouseOver()
             GetComponent<Rigidbody>().useGravity = false;
             //rigidBody.isKinematic = true;
             rigidBody.detectCollisions = true;
-            Debug.Log("CARRYING");
             
             isCarrying = true;
             
@@ -89,7 +88,6 @@ private void OnMouseOver()
             rigidBody.angularVelocity = Vector3.zero;
             if (Input.GetMouseButtonDown(0))
             {
-                //StartCoroutine(ThrowCounter());
                 startingTime = Time.time;
             }
             if (Input.GetMouseButtonUp(0))
