@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b89471e32b103124a80a99d9ac74c9b4, type: 2}
+  - {fileID: 2100000, guid: eb1c72b07f4776b468b8be7eebb3160d, type: 2}
   - {fileID: 2100000, guid: b89471e32b103124a80a99d9ac74c9b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347fa066ec5ef8e45b3d1d9d25445b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
   doorLeft: {fileID: 7587078909674409070}
   doorRight: {fileID: 7690977209124500333}
   entryCollider: {fileID: 3105858528851671473}

@@ -18,7 +18,6 @@ public class DoubleDoorOpen : MonoBehaviour
     public Vector3 openPosRight;
     private Vector3 closedPosRight;
 
-    // Start is called before the first frame update
     void Start()
     {
         entryCollider = gameObject.GetComponent<BoxCollider>();
@@ -48,6 +47,15 @@ public class DoubleDoorOpen : MonoBehaviour
         {
             closed = true;
             open = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "Controller" && active == true)
+        {
+            open = true;
+            closed = false;
         }
     }
 

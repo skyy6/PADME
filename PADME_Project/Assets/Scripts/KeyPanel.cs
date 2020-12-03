@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyPanel : MonoBehaviour
 {
     public GameObject doors;
+    public GameObject twinPanel;
     public bool active;
     public Material lightStrip;
 
@@ -23,6 +24,7 @@ public class KeyPanel : MonoBehaviour
             //&& playerHasKeycard
         {
             active = !active;
+            twinPanel.SendMessage("ToggleActive", active);
             lightSwitch();
             ActivateDoor();
         }
@@ -51,5 +53,10 @@ public class KeyPanel : MonoBehaviour
     private void ActivateDoor()
     {
         doors.SendMessage("ToggleActive", active);
+    }
+
+    private void ToggleActive(bool b)
+    {
+        active = b;
     }
 }

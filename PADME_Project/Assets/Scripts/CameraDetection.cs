@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraDetection : MonoBehaviour
 {
     public GameObject camera;
+    public GameObject door;
     public Material camLight;
     private bool active;
     private bool detected;
@@ -26,6 +27,10 @@ public class CameraDetection : MonoBehaviour
             detected = true;
             Debug.Log("Player detected by " + camera.name);
             camLight.SetColor("_EmissionColor", activeCol);
+            if(door != null)
+            {
+                ToggleDoor(false);
+            }         
         }
     }
 
@@ -35,11 +40,20 @@ public class CameraDetection : MonoBehaviour
         {
             detected = false;
             camLight.SetColor("_EmissionColor", deactiveCol);
+            if(door != null)
+            {
+                ToggleDoor(true);
+            }            
         }
     }
 
     private void Deactivate()
     {
         active = false;
+    }
+
+    private void ToggleDoor(bool b)
+    {
+        door.SendMessage("ToggleActive", b);
     }
 }
