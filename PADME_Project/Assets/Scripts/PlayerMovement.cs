@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     bool isObstructed;
     bool isCrouching;
     bool isWalking;
+    bool infiniteRun;
     public StaminaBar staminaBar;
     int maxStamina = 800;
 
@@ -90,6 +91,13 @@ public class PlayerMovement : MonoBehaviour
         if (Camera.main.fieldOfView < MaxFOV)
         {
             Camera.main.fieldOfView += 100 * Time.deltaTime; //increase fov
+        }
+    }
+    void getInfiniteRun()
+    {
+        if (Input.GetKey(KeyCode.CapsLock))
+        {
+            infiniteRun = !infiniteRun;
         }
     }
 
@@ -188,10 +196,18 @@ public class PlayerMovement : MonoBehaviour
         targetCameraHeight = standingCameraHeight;
 
         StandingState();
+        getInfiniteRun();
+
 
 
 
         //Debug.Log(movementSpeed);
+        if (infiniteRun)
+        {
+            sprintTime = 20000;
+        }
+
+
 
         if (isWalking)
         {

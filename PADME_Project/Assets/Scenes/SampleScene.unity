@@ -29836,7 +29836,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   jumpHeight: 1.5
-  gravity: -9.81
+  gravity: -14.81
   movementSpeed: 0
   walkingSpeed: 5
   runningSpeed: 10
@@ -31283,8 +31283,8 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514052617}
   m_ConnectedBody: {fileID: 3033586545672400924}
-  m_BreakForce: 20
-  m_BreakTorque: 20
+  m_BreakForce: 2000
+  m_BreakTorque: 2000
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
@@ -40958,7 +40958,7 @@ PrefabInstance:
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.561
+      value: -29.68
       objectReference: {fileID: 0}
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
@@ -40968,7 +40968,7 @@ PrefabInstance:
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 180.54
+      value: 180.32
       objectReference: {fileID: 0}
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
@@ -41013,17 +41013,17 @@ PrefabInstance:
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 152.35338
+      value: 158.44751
       objectReference: {fileID: 0}
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 147.91318
+      value: 153.8297
       objectReference: {fileID: 0}
     - target: {fileID: 1369030089747727326, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 152.35338
+      value: 158.44751
       objectReference: {fileID: 0}
     - target: {fileID: 1852128644278540644, guid: d6fe79f6dcc6d054fb46f857447eb97f,
         type: 3}
