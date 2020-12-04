@@ -48,7 +48,7 @@ public class EquipItem : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(equipped);
+        //Debug.Log(equipped);
         if(contain.childCount > 0)
         {
             equipped = true;

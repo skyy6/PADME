@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     public float standingCameraHeight = 1.75f;
     public float crouchingCameraHeight = 0.75f;
 
+    private bool typing;
+
     void Jumping()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -166,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.fieldOfView = fieldOfView;
         staminaBar.SetMaxStamina(maxStamina);
         originalOffset = playerController.stepOffset;
-
+        typing = false;
         
 
     }
@@ -226,10 +228,18 @@ public class PlayerMovement : MonoBehaviour
             moving = false;
         }
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        if(!typing)
+        {
+            Vector3 move = transform.right * x + transform.forward * z;
 
-        playerController.Move(move * movementSpeed * Time.deltaTime);
+            playerController.Move(move * movementSpeed * Time.deltaTime);
+        }        
   
+    }
+
+    private void ToggleTyping(bool b)
+    {
+        typing = b;
     }
 
 }

@@ -12,18 +12,32 @@ public class ServiceElevator : MonoBehaviour
 
     private bool active;
     private bool ascend;
-    private bool manual;
+    private int manual;
 
     private void Start()
     {
-        active = true;
+        active = false;
         ascend = true;
-        manual = false;
+        manual = 0;
     }
 
     private void Update()
     {
-        if (active && !manual)
+        switch (manual)
+        {
+            case 0:
+                break;
+            case 1:
+                ascend = true;
+                break;
+            case -1:
+                ascend = false;
+                break;
+            default:
+                break;
+        }
+
+        if (active)
         {
             if (platform.transform.localPosition.y < maxHeight.y && ascend)
             {
@@ -42,11 +56,21 @@ public class ServiceElevator : MonoBehaviour
             {
                 ascend = true;
             }
-        }        
+        }
+    }
+
+    private bool HeightCheck()
+    {
+        return platform.transform.localPosition.y < maxHeight.y && platform.transform.localPosition.y > minHeight.y;
     }
 
     private void ToggleActive(bool b)
     {
         active = b;
+    }
+
+    private void ToggleManual(int i)
+    {
+        manual = i;
     }
 }
