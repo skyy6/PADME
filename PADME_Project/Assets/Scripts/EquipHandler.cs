@@ -13,16 +13,21 @@ public class EquipHandler : MonoBehaviour
     {
         
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        if (gameObject.name == "Crowbar" || gameObject.name == "Crowbar(Clone)")
+        {
+
+
+            anim = GetComponent<Animator>();
+        }
+        
 
     }
 
 
     void Update()
     {
-        rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.isKinematic = true;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && (gameObject.name == "Crowbar" || gameObject.name == "Crowbar(Clone)"))
         {
             anim.Play("crowbarAttack");
         }
