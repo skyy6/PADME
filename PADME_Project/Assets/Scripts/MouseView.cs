@@ -20,7 +20,6 @@ public class MouseView : MonoBehaviour
     {
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
