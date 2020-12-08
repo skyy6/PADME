@@ -27,12 +27,12 @@ public class ServiceElevatorConsole : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.KeypadPlus))
             {
-                serviceElevator.SendMessage("ToggleManual", 1);
+                serviceElevator.SendMessage("ToggleManual", 3);
             }
 
             if (Input.GetKeyDown(KeyCode.KeypadMinus))
             {
-                serviceElevator.SendMessage("ToggleManual", -1);
+                serviceElevator.SendMessage("ToggleManual", 2);
             }
         }        
     }
@@ -41,7 +41,7 @@ public class ServiceElevatorConsole : MonoBehaviour
     {
         if (other.gameObject.name == "Controller")
         {
-            serviceElevator.SendMessage("ToggleManual", 0);
+            serviceElevator.SendMessage("ToggleManual", 1);
         }
     }
 }

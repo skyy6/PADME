@@ -18,20 +18,20 @@ public class ServiceElevator : MonoBehaviour
     {
         active = false;
         ascend = true;
-        manual = 0;
+        manual = 1;
     }
 
     private void Update()
     {
         switch (manual)
         {
-            case 0:
-                break;
             case 1:
-                ascend = true;
                 break;
-            case -1:
+            case 2:
                 ascend = false;
+                break;
+            case 3:
+                ascend = true;
                 break;
             default:
                 break;
