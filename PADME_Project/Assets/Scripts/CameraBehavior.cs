@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    GameObject sparkSystem;
+    ParticleSystem sparkSystem;
     Transform sparkPos;
     bool destroyed = false;
+    Camera cam;
 
 
     void Start()
     {
-        sparkSystem = GameObject.Find("Sparks");
-        sparkPos = GameObject.Find("Sparks").transform;
-        //Physics.IgnoreCollision(sparkPos.GetComponent<Collider>(), transform.GetComponent<Collider>());
+
+        sparkSystem = gameObject.GetComponentInChildren<ParticleSystem>();
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //sparkPos.parent = transform;
-        sparkSystem.GetComponent<ParticleSystem>().Play();
+        sparkSystem.Play();
         destroyed = true;
-        //sparkPos = transform;
-
-    }
-
-
-    void Update()
-    {
-        //Debug.Log(destroyed);
-       /* if (destroyed)
+        if(gameObject.transform.childCount > 0)
         {
-            //sparkPos.parent = transform;
-        }*/
+            cam = GetComponentInChildren<Camera>();
+            cam.enabled = false;
+        }
+
+
     }
+
 }

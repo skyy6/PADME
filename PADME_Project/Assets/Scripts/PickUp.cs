@@ -9,6 +9,7 @@ public class PickUp : MonoBehaviour
     Transform playerCamera;
     float startingTime;
     float endTime;
+    float distance;
     Rigidbody rigidBody;
     Vector3 startScale;
     bool isCarrying = false;
@@ -28,8 +29,6 @@ public class PickUp : MonoBehaviour
         playerCamera = GameObject.Find("Main Camera").transform;
         rigidBody = GetComponent<Rigidbody>();
         startScale = transform.localScale;
-        //cam = GameObject.Find
-        
 
 
     }
@@ -42,23 +41,32 @@ public class PickUp : MonoBehaviour
         }
     
     }
+    void SizeCheck()
+    {
+        if(transform.tag == ("Medium Objects") && Input.GetKeyDown(KeyCode.E) && distance < 7f)
+        {
+            PickUpItem();
+            isCarrying = true;
+        }
+        if (transform.tag == ("Small Objects") && Input.GetKeyDown(KeyCode.E) && distance < 4.5f)
+        {
+            PickUpItem();
+            isCarrying = true;
+        }
+    }
+    void PickUpItem()
+    {
+        transform.parent = playerCamera;
+        GetComponent<Rigidbody>().useGravity = false;
+        rigidBody.detectCollisions = true;
+    }
 
 private void OnMouseOver()
     {
         looking = true;
-        float distance = Vector3.Distance(player.position, transform.position);
-        //Debug.Log("Looking at " + transform.name + "Distance: " + distance);
-        if(Input.GetKeyDown(KeyCode.E) && distance < 3f)
-        {
-            transform.parent = playerCamera;
-            GetComponent<Rigidbody>().useGravity = false;
-            //rigidBody.isKinematic = true;
-            rigidBody.detectCollisions = true;
-            
-            isCarrying = true;
-            
+        distance = Vector3.Distance(player.position, transform.position);
+        SizeCheck();
 
-        }
 
     }
  
@@ -102,14 +110,7 @@ private void OnMouseOver()
                 Debug.Log("Throw" + endTime + startingTime);
 
             }
-            /*if (collided)  //gamla if satsen för att kolla om man nuddade något
-            {
-                GetComponent<Rigidbody>().isKinematic = false;
-                //GetComponent<Rigidbody>().useGravity = true;
-                transform.parent = null;
-                isCarrying = false;
-                collided = false;
-            }*/
+
             if (Input.GetKeyUp(KeyCode.E))
             {
                 transform.parent = null;

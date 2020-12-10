@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8977330315995502779}
   - component: {fileID: 5420708660606064414}
   - component: {fileID: 7844934681892889556}
-  - component: {fileID: 1317720172217339590}
   - component: {fileID: 8713779088192797575}
   - component: {fileID: 8035598824830075019}
+  - component: {fileID: 1118982370706160305}
   m_Layer: 8
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: Small Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,20 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1317720172217339590
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8637397173374386689}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3660275907326674588, guid: c316a56f2cabaed4f856fa62e846b20f, type: 3}
 --- !u!54 &8713779088192797575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,3 +117,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf2168a029a3224d8b78b5405937f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1118982370706160305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637397173374386689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.039313354, y: 0.039707027, z: 0.039332498}
+  m_Center: {x: 0, y: -0.0000000027939677, z: 0}
