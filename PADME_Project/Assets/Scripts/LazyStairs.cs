@@ -16,6 +16,8 @@ public class LazyStairs : MonoBehaviour
     public Vector3 spawnPos6;
     public Vector3 spawnPos7;
 
+    public bool active = true;
+
     private void Start()
     {
         Debug.Log("För att slippa bygga trappa själv; tryck 'L'");
@@ -24,7 +26,7 @@ public class LazyStairs : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.L) && active)
         {
             Instantiate(boxMedium, spawnPos1, rotate);
             Instantiate(boxMedium, spawnPos2, rotate);
@@ -33,6 +35,7 @@ public class LazyStairs : MonoBehaviour
             Instantiate(boxMedium, spawnPos5, rotate);
             Instantiate(boxMedium, spawnPos6, rotate);
             Instantiate(boxSmall, spawnPos7, rotate);
+            active = false;
         }
     }
 }

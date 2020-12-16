@@ -12,6 +12,7 @@ public class ComputerCommands : MonoBehaviour
     public GameObject mainLights;
     public GameObject serviceElevator;
     public GameObject playerController;
+    public FlickerController flickerController;
 
     private bool active;
     private bool enabled;
@@ -104,8 +105,13 @@ public class ComputerCommands : MonoBehaviour
                 serviceElevator.SendMessage("ToggleActive", true);
                 tmp.text += '\n' + ">> Service elevator running--";
                 break;
-            case "C":
-                Debug.Log("Cmd C");
+            case "lockdown.true":
+                tmp.text += '\n' + ">> LOCKDOWN_MODE_ACTIVATED";
+                flickerController.Lockdown(true);
+                break;
+            case "lockdown.false":
+                tmp.text += '\n' + ">> LOCKDOWN_MODE_DEACTIVATED";
+                flickerController.Lockdown(false);
                 break;
             default:
                 break;

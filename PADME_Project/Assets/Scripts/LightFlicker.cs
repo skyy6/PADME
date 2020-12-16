@@ -11,8 +11,11 @@ public class LightFlicker : MonoBehaviour
     public float minFlickerSpeed = 0.1f;
     public float maxFlickerSpeed = 0.5f;
     public GameObject lightTubes;
+    private Color standardEmission = new Color(255, 255, 255, 255);
+    private Color lockdownEmission = new Color(0, 0, 0, 0);
+    private Material material;
 
-    private bool flicker = true;
+    public float intensityFactor = 0.01f;
 
     private void Start()
     {
@@ -20,37 +23,49 @@ public class LightFlicker : MonoBehaviour
         {
             light = GetComponent<Light>();
         }
-        StartCoroutine(Flicker());
+        material = new Material(GetComponent<Renderer>().material);
+        lightTubes.GetComponent<Renderer>().material = material;
     }
 
     void Update()
     {
-        
+
+    }
+
+    public void StartFlicker()
+    {
+        StartCoroutine(Flicker());
     }
 
     IEnumerator Flicker()
     {
-        float factor = Random.Range(minIntensity, maxIntensity);
-        yield return new WaitForSecondsRealtime(Random.Range(minFlickerSpeed, maxFlickerSpeed));
-        light.intensity = factor;
-        lightTubes.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(factor, factor, factor, factor));
-        if (flicker)
+        while(true)
         {
-            StartCoroutine(Flicker());
+            float factor = Random.Range(minIntensity, maxIntensity);
+            yield return new WaitForSecondsRealtime(Random.Range(minFlickerSpeed, maxFlickerSpeed));
+            light.intensity = factor;
+            material.SetColor("_EmissionColor", new Color(factor, factor, factor, factor));
         }
     }
 
-    GameObject GetChildWithName(GameObject obj, string name)
+    public void StopFlicker()
     {
-        Transform trans = obj.transform;
-        Transform childTrans = trans.Find(name);
-        if (childTrans != null)
+        StopAllCoroutines();
+        material.SetColor("_EmissionColor", standardEmission);
+    }
+
+    public void Lockdown(bool b)
+    {
+        if(b)
         {
-            return childTrans.gameObject;
+            StopFlicker();
+            light.intensity = 0f;
+            material.SetColor("_EmissionColor", lockdownEmission);
         }
         else
         {
-            return null;
-        }
+            light.intensity = maxIntensity;
+            material.SetColor("_EmissionColor", standardEmission);
+        }        
     }
 }

@@ -173,9 +173,10 @@ GameObject:
   - component: {fileID: 6960628424829779505}
   - component: {fileID: 596459557771344798}
   - component: {fileID: 3532374643959561609}
+  - component: {fileID: 7234784737661975697}
   m_Layer: 0
   m_Name: light_tubes
-  m_TagString: Untagged
+  m_TagString: FlickerLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +244,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7234784737661975697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623128734497144666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec5ef9601495784cb28e3ed744ac51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 2010553095491793551}
+  minIntensity: 0
+  maxIntensity: 1
+  minFlickerSpeed: 0.1
+  maxFlickerSpeed: 0.5
+  lightTubes: {fileID: 3623128734497144666}
+  intensityFactor: 0.01
 --- !u!1 &3816000939124575420
 GameObject:
   m_ObjectHideFlags: 0

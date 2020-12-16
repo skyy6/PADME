@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Medium Objects
   - Small Objects
+  - FlickerLight
+  - LockdownLight
   layers:
   - Default
   - TransparentFX
