@@ -12,6 +12,7 @@ public class CameraDetection : MonoBehaviour
 
     private Color activeCol = new Color(0, 255, 10, 0);
     private Color deactiveCol = new Color(255, 0, 0, 0);
+    private Color brokenCol = new Color(0, 0, 0, 0);
 
     private void Start()
     {
@@ -47,9 +48,16 @@ public class CameraDetection : MonoBehaviour
         }
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         active = false;
+    }
+
+    public void Break()
+    {
+        active = false;
+        camLight.SetColor("_EmissionColor", brokenCol);
+        ToggleDoor(true);
     }
 
     private void ToggleDoor(bool b)

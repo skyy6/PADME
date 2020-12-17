@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlickerController : MonoBehaviour
 {
-    public GameObject pointLights;
+    public GameObject[] pointLights;
     private GameObject[] lights;
     private GameObject[] lockdownLights;
     public List<GameObject> flickering = new List<GameObject>();
@@ -46,7 +46,10 @@ public class FlickerController : MonoBehaviour
     public void Lockdown(bool b)
     {
         lockdown = b;
-        pointLights.SetActive(!b);
+        foreach(GameObject g in pointLights)
+        {
+            g.SetActive(!b);
+        }
         foreach(GameObject g in lights)
         {
             g.SendMessage("Lockdown", b);
