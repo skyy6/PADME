@@ -10,6 +10,7 @@ public class EquipItem : MonoBehaviour
     Transform containLeft;
     GameObject pos;
     public GameObject item;
+    GameController gameController;
     Rigidbody rb;
     bool equipped;
 
@@ -19,6 +20,8 @@ public class EquipItem : MonoBehaviour
         player = GameObject.Find("Controller").transform;
         contain = GameObject.Find("Container").transform;
         containLeft = GameObject.Find("ContainerLeft").transform;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        
 
         rb = GetComponent<Rigidbody>();
 
@@ -32,10 +35,10 @@ public class EquipItem : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         if (Input.GetKeyDown(KeyCode.E) && distance < 3f && equipped == false)
         {
-            //if (transform.name == "Crowbar PickUp" || transform.name == "Crowbar PickUp(Clone)")
             if (CompareTag("Crowbar"))
             {
                 equipped = true;
+                gameController.foundCrowbar = true;
                 Instantiate(item, contain.position, contain.rotation, contain);
                 Destroy(gameObject);
             }
@@ -49,7 +52,6 @@ public class EquipItem : MonoBehaviour
     }
     void Update()
     {
-        //Debug.Log(equipped);
         if(contain.childCount > 0)
         {
             equipped = true;

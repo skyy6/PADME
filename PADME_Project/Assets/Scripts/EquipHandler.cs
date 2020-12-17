@@ -27,7 +27,7 @@ public class EquipHandler : MonoBehaviour
         
 
     }
-    void onCrowbarEquipped()
+    void OnCrowbarEquipped()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -51,10 +51,9 @@ public class EquipHandler : MonoBehaviour
     {
         crowCollider.enabled = false;
         rb.isKinematic = true;
-        //if(gameObject.name == "Crowbar" || gameObject.name == "Crowbar(Clone)")
         if (CompareTag("Crowbar"))
         {
-            onCrowbarEquipped();
+            OnCrowbarEquipped();
         }
         if (CompareTag("Flashlight"))
         {

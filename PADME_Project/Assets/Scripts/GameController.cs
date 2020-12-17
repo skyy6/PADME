@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public bool keyCardLevel1 = false;
     public bool keyCardLevel2 = false;
     public bool keyCardLevel3 = false;
+    public bool foundCrowbar = false;
     public bool playerDetected = false;
 
     public bool PlayerHasKeyCard(int i)
@@ -45,6 +46,10 @@ public class GameController : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void PlayerFoundCrowbar(bool b)
+    {
+        foundCrowbar = b;
     }
 
     public void PlayerDetected(bool b)
