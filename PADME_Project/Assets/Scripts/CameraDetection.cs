@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraDetection : MonoBehaviour
 {
+    public GameController gameController;
     public GameObject camera;
     public GameObject door;
     public Material camLight;
@@ -26,6 +27,7 @@ public class CameraDetection : MonoBehaviour
         if (other.gameObject.name == "Controller" && active)
         {
             detected = true;
+            gameController.PlayerDetected(detected);
             Debug.Log("Player detected by " + camera.name);
             camLight.SetColor("_EmissionColor", activeCol);
             if(door != null)
@@ -40,6 +42,7 @@ public class CameraDetection : MonoBehaviour
         if (other.gameObject.name == "Controller" && active == true)
         {
             detected = false;
+            gameController.PlayerDetected(detected);
             camLight.SetColor("_EmissionColor", deactiveCol);
             if(door != null)
             {

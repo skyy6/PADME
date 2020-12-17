@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class KeyPanel : MonoBehaviour
 {
+    public GameController gameController;
     public GameObject doors;
     public GameObject twinPanel;
     public bool active;
     public Material lightStrip;
+    private bool enabled;
+    public int clearanceLevel;
 
     private Color activeCol = new Color(0, 255, 168, 0);
     private Color deactiveCol = new Color(255, 0, 0, 0);
@@ -16,25 +19,34 @@ public class KeyPanel : MonoBehaviour
     {
         lightStrip.SetColor("_EmissionColor", deactiveCol);
         active = false;
+        enabled = false;
+        clearanceLevel = 1;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && other.gameObject.name == "Controller")
-            //&& playerHasKeycard
+        if (Input.GetKeyDown(KeyCode.E) && enabled)
         {
             active = !active;
-            twinPanel.SendMessage("ToggleActive", active);
             lightSwitch();
             ActivateDoor();
+            twinPanel.SendMessage("ToggleActive", active);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Controller")
+        if(other.gameObject.name == "Controller" && gameController.PlayerHasKeyCard(clearanceLevel))
         {
-            Debug.Log("In contact with " + this.gameObject + ". Press 'E' to activate");
+            enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Controller" && gameController.PlayerHasKeyCard(clearanceLevel))
+        {
+            enabled = false;
         }
     }
 

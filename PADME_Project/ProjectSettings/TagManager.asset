@@ -8,6 +8,8 @@ TagManager:
   - Small Objects
   - FlickerLight
   - LockdownLight
+  - Crowbar
+  - Flashlight
   layers:
   - Default
   - TransparentFX

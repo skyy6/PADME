@@ -32,13 +32,14 @@ public class EquipItem : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         if (Input.GetKeyDown(KeyCode.E) && distance < 3f && equipped == false)
         {
-            if (transform.name == "Crowbar PickUp" || transform.name == "Crowbar PickUp(Clone)")
+            //if (transform.name == "Crowbar PickUp" || transform.name == "Crowbar PickUp(Clone)")
+            if (CompareTag("Crowbar"))
             {
                 equipped = true;
                 Instantiate(item, contain.position, contain.rotation, contain);
                 Destroy(gameObject);
             }
-            else
+            else if (CompareTag("Flashlight"))
             {
                 equipped = true;
                 Instantiate(item, containLeft.position, containLeft.rotation, containLeft);
