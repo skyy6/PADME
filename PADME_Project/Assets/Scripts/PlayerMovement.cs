@@ -223,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!isGrounded)
         {
-           // playerController.stepOffset = 0f;
+            playerController.stepOffset = 0f;
 
         }
         else
