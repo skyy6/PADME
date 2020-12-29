@@ -10,6 +10,8 @@ TagManager:
   - LockdownLight
   - Crowbar
   - Flashlight
+  - Metal
+  - Ground
   layers:
   - Default
   - TransparentFX

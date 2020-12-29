@@ -182,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        
         if(!Input.GetKeyDown(KeyCode.LeftControl) && !isObstructed){
             isCrouching = false;
         }
