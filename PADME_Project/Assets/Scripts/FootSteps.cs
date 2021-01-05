@@ -41,7 +41,7 @@ public class FootSteps : MonoBehaviour
 
         if (hit.transform.tag == "Metal")
         {
-            Debug.Log("Metal");
+            
             onMetal = true;
         }
         else
@@ -80,7 +80,7 @@ public class FootSteps : MonoBehaviour
         if (audioStart == true && onGround == true)
         {
             VolumePitch();
-            audioSource.pitch = 1f + Random.Range(-0.2f, 0.2f);
+            audioSource.pitch = 0.9f + Random.Range(-0.2f, 0.2f);
             audioSource.PlayOneShot(normal, 0.9f);
         }
         if (audioStart == true && onMetal == true)

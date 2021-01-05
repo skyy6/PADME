@@ -10,7 +10,7 @@ public class ObjectivesUI : MonoBehaviour
     public GameController gameController;
     public Text clearanceText;
     public Text crowbarText;
-    public Text efficeText;
+    public Text officeText;
     public Text escapeText;
 
 
@@ -27,6 +27,14 @@ public class ObjectivesUI : MonoBehaviour
         if(gameController.foundCrowbar == true)
         {
             crowbarText.color = Color.green;
+        }
+        if(gameController.playerVent == true)
+        {
+            officeText.color = Color.green;
+        }
+        if(gameController.playerEscaped == true)
+        {
+            escapeText.color = Color.green;
         }
     }
     private void ToggleObjectives()

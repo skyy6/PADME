@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public bool keyCardLevel3 = false;
     public bool foundCrowbar = false;
     public bool playerDetected = false;
+    public bool playerVent = false;
+    public bool playerEscaped = false;
 
     public bool PlayerHasKeyCard(int i)
     {
@@ -56,4 +58,13 @@ public class GameController : MonoBehaviour
     {
         playerDetected = b;
     }
+    public void PlayerEnterVent(bool b)
+    {
+        playerVent = b;
+    }
+    public void PlayerEscape(bool b)
+    {
+        playerEscaped = b;
+    }
+    
 }
